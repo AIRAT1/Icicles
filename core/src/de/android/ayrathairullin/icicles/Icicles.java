@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class Icicles {
     public static final String TAG = Icicles.class.getName();
 
-    private DelayedRemovalArray<Icicle> icicleList;
+    public DelayedRemovalArray<Icicle> icicleList;
     private Viewport viewport;
 
     public Icicles(Viewport viewport) {

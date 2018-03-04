@@ -44,6 +44,9 @@ public class IciclesScreen implements Screen{
     public void render(float delta) {
         icicles.update(delta);
         player.update(delta);
+        if (player.hitByIcicle(icicles)) {
+            icicles.init();
+        }
         iciclesViewport.apply();
         Gdx.gl.glClearColor(
                 Constants.BACKGROUND_COLOR.r,
