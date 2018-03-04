@@ -6,26 +6,25 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import de.android.ayrathairullin.icicles.Constants;
-import de.android.ayrathairullin.icicles.Icicle;
+import de.android.ayrathairullin.icicles.Icicles;
 import de.android.ayrathairullin.icicles.Player;
 
 public class IciclesScreen implements Screen{
     public static final String TAG = IciclesScreen.class.getName();
     private ExtendViewport iciclesViewport;
     private ShapeRenderer renderer;
-    private Icicle icicle;
     private Player player;
+    private Icicles icicles;
 
     @Override
     public void show() {
         iciclesViewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
         renderer = new ShapeRenderer();
         renderer.setAutoShapeType(true);
-        icicle = new Icicle(new Vector2(Constants.WORLD_SIZE / 2, Constants.WORLD_SIZE / 2));
+        icicles = new Icicles(iciclesViewport);
         player = new Player(iciclesViewport);
     }
 
@@ -33,6 +32,7 @@ public class IciclesScreen implements Screen{
     public void resize(int width, int height) {
         iciclesViewport.update(width, height, true);
         player.init();
+        icicles.init();
     }
 
     @Override
@@ -42,6 +42,7 @@ public class IciclesScreen implements Screen{
 
     @Override
     public void render(float delta) {
+        icicles.update(delta);
         player.update(delta);
         iciclesViewport.apply();
         Gdx.gl.glClearColor(
@@ -51,7 +52,7 @@ public class IciclesScreen implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.setProjectionMatrix(iciclesViewport.getCamera().combined);
         renderer.begin(ShapeType.Filled);
-        icicle.render(renderer);
+        icicles.render(renderer);
         player.render(renderer);
         renderer.end();
     }

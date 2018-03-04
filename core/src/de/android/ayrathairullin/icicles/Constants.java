@@ -2,6 +2,7 @@ package de.android.ayrathairullin.icicles;
 
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.Vector2;
 
 public class Constants {
     public static final float WORLD_SIZE = 10f;
@@ -17,4 +18,6 @@ public class Constants {
     public static final float PLAYER_MOVEMENT_SPEED = 10f;
     public static final float ACCELEROMETER_SENSITIVITY = .5f;
     public static final float GRAVITATIONAL_ACCELERATION = 9.81f;
+    public static final Vector2 ICICLES_ACCELERATION = new Vector2(0, -5);
+    public static final float ICICLE_SPAWNS_PER_SECOND = 10;
 }
