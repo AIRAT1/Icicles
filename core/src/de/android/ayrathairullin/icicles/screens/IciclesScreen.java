@@ -11,12 +11,14 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import de.android.ayrathairullin.icicles.Constants;
 import de.android.ayrathairullin.icicles.Icicle;
+import de.android.ayrathairullin.icicles.Player;
 
 public class IciclesScreen implements Screen{
     public static final String TAG = IciclesScreen.class.getName();
     private ExtendViewport iciclesViewport;
     private ShapeRenderer renderer;
     private Icicle icicle;
+    private Player player;
 
     @Override
     public void show() {
@@ -24,11 +26,13 @@ public class IciclesScreen implements Screen{
         renderer = new ShapeRenderer();
         renderer.setAutoShapeType(true);
         icicle = new Icicle(new Vector2(Constants.WORLD_SIZE / 2, Constants.WORLD_SIZE / 2));
+        player = new Player(iciclesViewport);
     }
 
     @Override
     public void resize(int width, int height) {
         iciclesViewport.update(width, height, true);
+        player.init();
     }
 
     @Override
@@ -47,6 +51,7 @@ public class IciclesScreen implements Screen{
         renderer.setProjectionMatrix(iciclesViewport.getCamera().combined);
         renderer.begin(ShapeType.Filled);
         icicle.render(renderer);
+        player.render(renderer);
         renderer.end();
     }
 

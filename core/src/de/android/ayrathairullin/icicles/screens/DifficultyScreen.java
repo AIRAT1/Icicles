@@ -3,7 +3,6 @@ package de.android.ayrathairullin.icicles.screens;
 
 import com.badlogic.gdx.Screen;
 
-// TODO: Set up DifficultyScreen
 
 public class DifficultyScreen implements Screen{
     public static final String TAG = DifficultyScreen.class.getName();
