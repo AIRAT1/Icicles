@@ -10,12 +10,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import de.android.ayrathairullin.icicles.Constants.Difficulty;
 
 public class Icicles {
-    public static final String TAG = Icicles.class.getName();
-
     Difficulty difficulty;
 
     public int iciclesDodged;
-    public DelayedRemovalArray<Icicle> icicleList;
+    DelayedRemovalArray<Icicle> icicleList;
     private Viewport viewport;
 
     public Icicles(Viewport viewport, Difficulty difficulty) {

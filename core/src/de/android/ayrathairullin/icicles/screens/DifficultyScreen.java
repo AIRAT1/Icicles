@@ -21,8 +21,6 @@ import de.android.ayrathairullin.icicles.IciclesGame;
 
 
 public class DifficultyScreen extends InputAdapter implements Screen{
-    public static final String TAG = DifficultyScreen.class.getName();
-
     private IciclesGame game;
     private ShapeRenderer renderer;
     private SpriteBatch batch;

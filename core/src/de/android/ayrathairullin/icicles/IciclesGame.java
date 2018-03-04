@@ -7,7 +7,6 @@ import de.android.ayrathairullin.icicles.screens.DifficultyScreen;
 import de.android.ayrathairullin.icicles.screens.IciclesScreen;
 
 public class IciclesGame extends Game {
-
 	@Override
 	public void create () {
 		showDifficultyScreen();

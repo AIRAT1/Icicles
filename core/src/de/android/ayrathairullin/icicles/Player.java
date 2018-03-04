@@ -8,8 +8,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class Player {
-    public static final String TAG = Player.class.getName();
-
     private Vector2 position;
     private Viewport viewport;
     public int deaths;

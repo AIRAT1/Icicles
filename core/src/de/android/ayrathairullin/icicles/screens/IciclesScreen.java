@@ -21,8 +21,6 @@ import de.android.ayrathairullin.icicles.IciclesGame;
 import de.android.ayrathairullin.icicles.Player;
 
 public class IciclesScreen extends InputAdapter implements Screen{
-    public static final String TAG = IciclesScreen.class.getName();
-
     private IciclesGame game;
     private Difficulty difficulty;
 
