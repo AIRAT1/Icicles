@@ -12,9 +12,11 @@ public class Player {
 
     private Vector2 position;
     private Viewport viewport;
+    public int deaths;
 
     public Player(Viewport viewport) {
         this.viewport = viewport;
+        deaths = 0;
         init();
     }
 
@@ -51,6 +53,9 @@ public class Player {
             if (icicle.position.dst(position) < Constants.PLAYER_HEAD_RADIUS) {
                 isHit = true;
             }
+        }
+        if (isHit) {
+            deaths ++;
         }
         return isHit;
     }

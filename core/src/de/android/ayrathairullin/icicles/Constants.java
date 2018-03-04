@@ -20,4 +20,6 @@ public class Constants {
     public static final float GRAVITATIONAL_ACCELERATION = 9.81f;
     public static final Vector2 ICICLES_ACCELERATION = new Vector2(0, -5);
     public static final float ICICLE_SPAWNS_PER_SECOND = 10;
+    public static final float HUD_FONT_REFERENCE_SCREEN_SIZE = 480;
+    public static final float HUD_MARGIN = 20;
 }
