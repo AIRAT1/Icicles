@@ -16,8 +16,10 @@ public class Constants {
     static final float ICICLES_WIDTH = .5f;
     static final Color ICICLE_COLOR = Color.WHITE;
     static final float PLAYER_MOVEMENT_SPEED = 10f;
-    static final float ACCELEROMETER_SENSITIVITY = .5f;
+
+    static final float ACCELEROMETER_SENSITIVITY = 1.5f;
     static final float GRAVITATIONAL_ACCELERATION = 9.81f;
+
     static final Vector2 ICICLES_ACCELERATION = new Vector2(0, -5);
     public static final float HUD_FONT_REFERENCE_SCREEN_SIZE = 480;
     public static final float HUD_MARGIN = 20;

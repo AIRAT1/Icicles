@@ -7,6 +7,7 @@ import de.android.ayrathairullin.icicles.IciclesGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.title = "Icicles";
 		new LwjglApplication(new IciclesGame(), config);
 	}
 }
