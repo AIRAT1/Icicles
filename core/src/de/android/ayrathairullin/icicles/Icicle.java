@@ -20,6 +20,5 @@ public class Icicle {
         renderer.triangle(position.x, position.y,
                 position.x - Constants.ICICLES_WIDTH / 2, position.y + Constants.ICICLES_HEIGHT / 2,
                 position.x + Constants.ICICLES_WIDTH / 2, position.y + Constants.ICICLES_HEIGHT / 2);
-//        renderer.circle(position.x, position.y, Constants.ICICLES_HEIGHT / 2, 64);
     }
 }
