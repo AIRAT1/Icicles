@@ -7,14 +7,19 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import de.android.ayrathairullin.icicles.Constants.Difficulty;
+
 public class Icicles {
     public static final String TAG = Icicles.class.getName();
 
+    Difficulty difficulty;
+
+    public int iciclesDodged;
     public DelayedRemovalArray<Icicle> icicleList;
     private Viewport viewport;
-    public int iciclesDodged;
 
-    public Icicles(Viewport viewport) {
+    public Icicles(Viewport viewport, Difficulty difficulty) {
+        this.difficulty = difficulty;
         this.viewport = viewport;
         init();
     }
@@ -25,7 +30,7 @@ public class Icicles {
     }
 
     public void update(float delta) {
-        if (MathUtils.random() < delta * Constants.ICICLE_SPAWNS_PER_SECOND) {
+        if (MathUtils.random() < delta * difficulty.spawnRate) {
             Vector2 newIciclePosition = new Vector2(
                     MathUtils.random() * viewport.getWorldWidth(),
                     viewport.getWorldHeight()
