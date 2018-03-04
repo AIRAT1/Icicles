@@ -1,5 +1,7 @@
 package de.android.ayrathairullin.icicles;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
@@ -18,6 +20,29 @@ public class Player {
 
     public void init() {
         position = new Vector2(viewport.getWorldWidth() / 2, Constants.PLAYER_HEAD_HEIGHT);
+    }
+
+    public void update(float delta) {
+        if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+            position.x -= delta * Constants.PLAYER_MOVEMENT_SPEED;
+        }else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+            position.x += delta * Constants.PLAYER_MOVEMENT_SPEED;
+        }
+
+        float accelerometerInput = -Gdx.input.getAccelerometerY() /
+                Constants.GRAVITATIONAL_ACCELERATION * Constants.ACCELEROMETER_SENSITIVITY;
+        position.x -= delta * accelerometerInput * Constants.PLAYER_MOVEMENT_SPEED;
+
+        ensureInBounds();
+    }
+
+    private void ensureInBounds() {
+        if (position.x - Constants.PLAYER_HEAD_RADIUS < 0) {
+            position.x = Constants.PLAYER_HEAD_RADIUS;
+        }
+        if (position.x + Constants.PLAYER_HEAD_RADIUS > viewport.getWorldWidth()) {
+            position.x = viewport.getWorldWidth() - Constants.PLAYER_HEAD_RADIUS;
+        }
     }
 
     public void render(ShapeRenderer renderer) {

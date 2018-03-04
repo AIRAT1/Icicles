@@ -14,4 +14,7 @@ public class Constants {
     public static final float ICICLES_HEIGHT = 1f;
     public static final float ICICLES_WIDTH = .5f;
     public static final Color ICICLE_COLOR = Color.WHITE;
+    public static final float PLAYER_MOVEMENT_SPEED = 10f;
+    public static final float ACCELEROMETER_SENSITIVITY = .5f;
+    public static final float GRAVITATIONAL_ACCELERATION = 9.81f;
 }
