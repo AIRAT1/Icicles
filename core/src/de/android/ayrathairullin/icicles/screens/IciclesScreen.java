@@ -4,6 +4,9 @@ package de.android.ayrathairullin.icicles.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -14,6 +17,8 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import java.util.Random;
+
 import de.android.ayrathairullin.icicles.Constants;
 import de.android.ayrathairullin.icicles.Constants.Difficulty;
 import de.android.ayrathairullin.icicles.Icicles;
@@ -23,6 +28,11 @@ import de.android.ayrathairullin.icicles.Player;
 public class IciclesScreen extends InputAdapter implements Screen{
     private IciclesGame game;
     private Difficulty difficulty;
+    private Music music;
+    private Sound sound;
+
+    private Color backgroundColor;
+    private Random random;
 
     private ExtendViewport iciclesViewport;
     private ShapeRenderer renderer;
@@ -44,6 +54,16 @@ public class IciclesScreen extends InputAdapter implements Screen{
     @Override
     public void show() {
         iciclesViewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
+
+        random = new Random();
+        backgroundColor = new Color(random.nextFloat(), random.nextFloat(), random.nextFloat(), 1);
+
+        music = Gdx.audio.newMusic(Gdx.files.internal("iceland_theme.mp3"));
+        music.setVolume(.05f);
+        music.setLooping(true);
+        music.play();
+
+        sound = Gdx.audio.newSound(Gdx.files.internal("fault.ogg"));
 
         renderer = new ShapeRenderer();
         renderer.setAutoShapeType(true);
@@ -83,11 +103,13 @@ public class IciclesScreen extends InputAdapter implements Screen{
         icicles.update(delta);
         player.update(delta);
         if (player.hitByIcicle(icicles)) {
+            sound.play(.2f);
+            backgroundColor = new Color(random.nextFloat(), random.nextFloat(), random.nextFloat(), 1);
             icicles.init();
         }
 
         iciclesViewport.apply(true);
-        Gdx.gl.glClearColor(Constants.BACKGROUND_COLOR.r, Constants.BACKGROUND_COLOR.g, Constants.BACKGROUND_COLOR.b, 1);
+        Gdx.gl.glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         renderer.setProjectionMatrix(iciclesViewport.getCamera().combined);
@@ -126,7 +148,8 @@ public class IciclesScreen extends InputAdapter implements Screen{
     public void hide() {
         renderer.dispose();
         batch.dispose();
-
+        music.dispose();
+        sound.dispose();
     }
 
     @Override
